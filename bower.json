@@ -1,0 +1,17 @@
+{
+  "name": "math_maker",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Alexey Yanovski <alexey.yanovski1@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/lexi89/math_maker",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
