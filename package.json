@@ -1,12 +1,13 @@
 {
-  "name": "math_maker",
+  "name": "angular_app_seed",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "git": "git add . && git commit -am 'auto-commit' && git push origin master"
+    "commit": "git add . && git commit 'auto-commit' && git push origin master",
+    "heroku": "git push heroku master"
   },
   "author": "Alexey Yanovski",
   "license": "ISC",
