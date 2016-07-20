@@ -1,5 +1,7 @@
-var app = angular.module("app", []);
+// Declare app level module, which depends on views and components.
 
-app.controller("ctrl", function($scope){
-  $scope.hello = "Hello, Angular!";
-});
+var app = angular.module("app", [
+  'ngRoute',
+  'todos',
+  'weather'
+]);

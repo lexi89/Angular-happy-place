@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app = "app" ng-cloak>
+<html lang="en" ng-app = "app">
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
@@ -11,12 +11,25 @@
   <!-- Custom -->
   <link rel="stylesheet" href="/assets/css/main.css">
 </head>
+
 <body ng-cloak>
-  <div ng-controller = "ctrl">
-    <h1>{{hello}}</h1>
+
+  <div ng-controller = "todoCtrl">
+    <p>{{example}}</p>
   </div>
-  
+
+  <div ng-controller = "weatherCtrl">
+    <p>{{weather}}</p>
+  </div>
+
+  <div ng-view></div>
+
   <script src="/assets/libs/bower/angular/angular.js"></script>
+  <script src="/assets/libs/bower/angular-route/angular-route.js"></script>
+
+
   <script src="app.module.js"></script>
+  <script src="/components/todos/todos.js"></script>
+  <script src="/components/weather/weather.js"></script>
 </body>
 </html>
