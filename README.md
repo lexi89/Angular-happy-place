@@ -1,4 +1,4 @@
-# Happy place for starting Angular apps.
+# Happy structure for starting Angular apps.
 
 ## npm scripts
 - "commit": add and commit all files to git with default message
@@ -6,3 +6,7 @@
 
 ## Gulp tasks
 - "default": nodemon + browsersync + sass compile + autoprefixer
+
+## Styling
+- Normalize.css
+- Foundation

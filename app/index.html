@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" ng-app = "app">
+<html lang="en" ng-app = "app" ng-cloak>
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Normalize -->
+  <link rel="stylesheet" href="/assets/libs/bower/normalize-css/normalize.css">
+  <!-- Foundation -->
   <link rel="stylesheet" href="/assets/libs/bower/foundation/css/foundation.css">
-  <link rel="stylesheet" href="/css/main.css">
+  <!-- Custom -->
+  <link rel="stylesheet" href="/assets/css/main.css">
 </head>
-<body ng-controller = "ctrl" ng-cloak>
-  <h1>{{hello}}</h1>
-  <script src="/assets/libs/bower/angular/angular.js" charset="utf-8"></script>
-  <script src="app.js" charset="utf-8"></script>
+<body ng-cloak>
+  <div ng-controller = "ctrl">
+    <h1>{{hello}}</h1>
+  </div>
+  
+  <script src="/assets/libs/bower/angular/angular.js"></script>
+  <script src="app.module.js"></script>
 </body>
 </html>

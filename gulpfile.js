@@ -5,7 +5,7 @@ var sass          = require("gulp-sass");
 var autoprefixer  = require("gulp-autoprefixer");
 
 gulp.task("default", ["browser-sync"], function(){
-}); // watches for changes in /app, calls nodemon to reboot node server, and compiles & autoprefixes sass, 
+}); // watches for changes in /app, calls nodemon to reboot node server, and compiles & autoprefixes sass,
 
 gulp.task('browser-sync',["nodemon"], function() {
     browserSync.init({
@@ -13,13 +13,13 @@ gulp.task('browser-sync',["nodemon"], function() {
         files: ["app/**/*.*"],
         port:3000
     });
-    gulp.watch("./app/css/main.scss", ["sass"]);
+    gulp.watch("./app/assets/css/main.scss", ["sass"]);
     gulp.watch(["*.html", "*.js"], browserSync.reload);
 });
 
 gulp.task("sass", function(){
   console.log("Running 'sass'");
-  return gulp.src("./app/css/main.scss")
+  return gulp.src("./app/assets/css/main.scss")
   .pipe(sass({
     style: "compressed",
     errLogToConsole:false,
@@ -30,7 +30,7 @@ gulp.task("sass", function(){
   .pipe(autoprefixer({
     browsers: ["last 2 versions"]
   }))
-  .pipe(gulp.dest("./app/css"))
+  .pipe(gulp.dest("./app/assets/css"))
   .pipe(browserSync.reload({stream: true}));
 });
 
