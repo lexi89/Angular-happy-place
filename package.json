@@ -8,11 +8,14 @@
     "start": "node server.js",
     "git": "git add . && git commit -am 'auto-commit' && git push origin master"
   },
-  "author": "",
+  "author": "Alexey Yanovski",
   "license": "ISC",
   "devDependencies": {
     "bower": "^1.7.9",
-    "gulp": "^3.9.1"
+    "browser-sync": "^2.13.0",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-sass": "^2.3.2"
   },
   "dependencies": {
     "express": "^4.14.0"
