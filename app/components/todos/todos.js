@@ -4,7 +4,7 @@ angular
   .config(config);
 
 function TodoController($scope){
-  $scope.example = "another todo";
+  $scope.example = "buy milk";
 }
 
 function config($routeProvider){
