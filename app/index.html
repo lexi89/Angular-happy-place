@@ -13,23 +13,22 @@
 </head>
 
 <body ng-cloak>
+  <span app-nav></span>
 
-  <div ng-controller = "todoCtrl">
-    <p>{{example}}</p>
-  </div>
-
-  <div ng-controller = "weatherCtrl">
-    <p>{{weather}}</p>
-  </div>
+  <a href="#/view1"><button>View 1</button></a>
+  <a href="#/view2"><button>View 2</button></a>
 
   <div ng-view></div>
+
+
 
   <script src="/assets/libs/bower/angular/angular.js"></script>
   <script src="/assets/libs/bower/angular-route/angular-route.js"></script>
 
-
   <script src="app.module.js"></script>
-  <script src="/components/todos/todos.js"></script>
-  <script src="/components/weather/weather.js"></script>
+  <script src="/view1/todos.js"></script>
+  <script src="/view1/todoService.js"></script>
+  <script src="/view2/weather.js"></script>
+  <script src="/components/directive.js"></script>
 </body>
 </html>
