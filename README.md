@@ -1,5 +1,7 @@
 # Happy place for starting Angular apps.
 
+Based on [John Papa's guide] (https://github.com/johnpapa/angular-styleguide)
+
 ## Structure
 - Responsibilities split up into separate modules.
 
