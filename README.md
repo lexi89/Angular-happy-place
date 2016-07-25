@@ -1,4 +1,7 @@
-# Happy structure for starting Angular apps.
+# Happy place for starting Angular apps.
+
+## Structure
+- Responsibilities split up into separate modules.
 
 ## npm scripts
 - "commit": add and commit all files to git with default message
