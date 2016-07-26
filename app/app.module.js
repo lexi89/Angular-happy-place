@@ -2,7 +2,5 @@
 
 var app = angular.module("app", [
   'ngRoute',
-  'todos',
-  'weather',
-  'app.directive1'
+  'questions'
 ]);

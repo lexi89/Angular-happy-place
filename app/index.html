@@ -13,10 +13,6 @@
 </head>
 
 <body ng-cloak>
-  <span app-nav></span>
-
-  <a href="#/view1"><button>View 1 (todos)</button></a>
-  <a href="#/view2"><button>View 2 (Weather)</button></a>
 
   <div ng-view></div>
 
@@ -24,9 +20,7 @@
   <script src="/assets/libs/bower/angular-route/angular-route.js"></script>
 
   <script src="app.module.js"></script>
-  <script src="/view1/todos.js"></script>
-  <script src="/view1/todoService.js"></script>
-  <script src="/view2/weather.js"></script>
-  <script src="/components/directive.js"></script>
+  <script src="/questions/questions.js"></script>
+  <script src="/questions/questions.service.js"></script>
 </body>
 </html>
