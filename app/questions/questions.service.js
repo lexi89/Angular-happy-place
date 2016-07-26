@@ -8,7 +8,7 @@
       // put all variable and function declarations at the top for readability.
       var service = {
         hello: hello,
-        save: save
+        saveQuestion: saveQuestion
       };
       return service;
 
@@ -17,8 +17,27 @@
         console.log("hello from a service");
       }
 
-      function save(){
-        
+      function saveQuestion(question, answer){
+        $http({
+          method: "POST",
+          url: "/newquestion",
+          headers: {
+            "Content-type" : "application/json"
+          },
+          data: {
+            "question": question,
+            "answer": answer
+          }
+        })
+        .then(function(success){
+          console.log("success: "+ success);
+        }, function(fail){
+          console.log("fail: " + fail);
+        });
+      }
+
+      function solveQuestion(question){
+        // return the answer
       }
     }
 
