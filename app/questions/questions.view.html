@@ -1,14 +1,17 @@
-<h1>questions View</h1>
-<form ng-submit = "questions.saveQuestion()" novalidate>
-  <input type="number" ng-model = "newQuestion" integer>
+<h1>Homework 1</h1>
+
+<form ng-submit = "saveQuestion()" novalidate>
+
+  <input type="text" ng-model = "newQuestion" only-math>
+  <button type = "submit" hidden>Submit</button>
+
 </form>
 
-<p>Question:{{newQuestion}}</p>
-<p>Answer:{{newAnswer}}</p>
-
+<div ng-show = "questionsArray.length > 0">
 <h4>Questions:</h4>
-<div>
-  <ul ng-repeat= "question in questions.questions">
-    <li>{{question}}</li>
-  </ul>
+  <ol>
+    <li ng-repeat= "question in questionsArray">{{question.question}} = {{question.answer}}</li>
+  </ol>
 </div>
+
+<button ng-click = "fetchQuestions()" class = "button">Fetch questions</button>

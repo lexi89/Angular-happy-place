@@ -10,7 +10,10 @@ module.exports = function(app){
 
   // start of API
   app.get("/questions", function(req,res){
-   res.send("Here are your questions.");
+    Questions.find({homeworkId: "test"})
+    .then(function(response){
+      res.send(response);
+    });
   });
 
   app.post("/newquestion", function(req, res){

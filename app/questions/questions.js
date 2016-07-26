@@ -7,24 +7,48 @@
     QuestionsController.$inject = ["questions.service", "$scope"];
 
     function QuestionsController(questionservice, $scope){
-      $scope.newQuestion = "";
+      var _ = $scope;
+      var qs = questionservice;
 
-      $scope.$watch("newQuestion", function(){
-        console.log("The question has changed. Sending for parsing");
-        parseQuestion($scope.newQuestion);
+      _.newQuestion = "";
+      _.typing = false;
+      _.newAnswer = "";
+      _.questionsArray = [];
+      _.saveQuestion = saveQuestion;
+      _.fetchQuestions = fetchQuestions;
+
+      _.$watch("newQuestion", function(){
+        if (!isNaN(_.newQuestion.slice(-1))){
+          // if the last entry is a number, solve the question.
+          _.newAnswer = qs.solveQuestion(_.newQuestion);
+        }
       });
 
-      $scope.newAnswer = parseQuestion(this.newQuestion);
-      $scope.questions = ["q1", "q2"];
-      $scope.saveQuestion = questionservice.saveQuestion;
-
-      function parseQuestion(question){
-        $scope.newAnswer = question;
+      function saveQuestion(){
+        qs.saveQuestion(_.newQuestion,_.newAnswer);
+        _.$apply(function(){
+          _.questionsArray.push({
+            question: _.newQuestion,
+            answer: _.newAnswer
+          });
+          _.newQuestion = "";
+          fetchQuestions();
+        });
       }
-      // Initialise a blank temp JS question.
-      // On key-press, check if the character matches allowed characters. Initially, only allow operators and numbers.
-      // on keypress, get an answer for the updated question
-      // show the answer
+
+      function fetchQuestions(){
+        qs.fetchQuestions()
+        .then(function(data){
+          _.questionsArray = data;
+        })
+        .catch(function(error){
+          console.log(error);
+        });
+      }
+
+      function updateQuestion(){
+        // post a question update to the database.
+      }
     }
 
     function config($routeProvider){

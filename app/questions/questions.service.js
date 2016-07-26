@@ -4,18 +4,14 @@
     .module("questions")
     .factory("questions.service", questionservice);
 
-    function questionservice() {
+    function questionservice($http) {
       // put all variable and function declarations at the top for readability.
       var service = {
-        hello: hello,
-        saveQuestion: saveQuestion
+        saveQuestion: saveQuestion,
+        solveQuestion: solveQuestion,
+        fetchQuestions: fetchQuestions
       };
       return service;
-
-      // keep implementation details lower down.
-      function hello() {
-        console.log("hello from a service");
-      }
 
       function saveQuestion(question, answer){
         $http({
@@ -36,8 +32,18 @@
         });
       }
 
+      function fetchQuestions(){
+        return $http.get("/questions")
+        .then(function(response){
+          return response.data;
+        })
+        .catch(function(error){
+          return error;
+        });
+      }
+
       function solveQuestion(question){
-        // return the answer
+        return eval(question);
       }
     }
 
