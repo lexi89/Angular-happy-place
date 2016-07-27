@@ -10,19 +10,21 @@
       var _ = $scope;
       var qs = questionservice;
 
-      _.newQuestion = "";
-      _.newAnswer = "";
-      _.questionsArray = [{"question":"1+2", "answer":"3"}, {"question": "3+4", "answer": "7"}]; //dummy data
+      _.newQuestion = {"question":"", "answer":""};
+      _.questionsArray = [
+        {
+          "_id": "875643",
+          "question":"1+2",
+          "answer":"3"
+        },
+        {
+          "_id": "213456",
+          "question": "3+4",
+          "answer": "7"
+        }];
       _.saveQuestion = saveQuestion;
       _.fetchQuestions = fetchQuestions;
-      _.editQuestion = editQuestion;
-
-      _.$watch("newQuestion", function(){
-        if (!isNaN(_.newQuestion.slice(-1))){
-          // if the last entry is a number, solve the question.
-          _.newAnswer = qs.solveQuestion(_.newQuestion);
-        }
-      });
+      _.logScope = logScope;
 
       function saveQuestion(){
         qs.saveQuestion(_.newQuestion,_.newAnswer);
@@ -35,25 +37,19 @@
         fetchQuestions();
       }
 
-
-      function editQuestion(){
-        // this = the scope of the iterated question.
-        console.log(this);
-        // on click, change the li to a form.
-      }
-
-      function updateQuestion(){
-        console.log("update the question");
-      }
-
       function fetchQuestions(){
-        qs.fetchQuestions()
-        .then(function(data){
-          _.questionsArray = data;
-        })
-        .catch(function(error){
-          console.log(error);
-        });
+        console.log("gonna fetch some q's");
+        // qs.fetchQuestions()
+        // .then(function(data){
+        //   _.questionsArray = data;
+        // })
+        // .catch(function(error){
+        //   console.log(error);
+        // });
+      }
+
+      function logScope(){
+        console.log($scope);
       }
 
 

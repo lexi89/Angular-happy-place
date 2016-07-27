@@ -7,7 +7,6 @@ module.exports = function(app){
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended:true}));
 
-
   // start of API
   app.get("/questions", function(req,res){
     Questions.find({homeworkId: "test"})

@@ -1,22 +1,20 @@
 <div class="question row">
   <div class="large-12 columns">
-
       <form ng-submit = "saveQuestion()" novalidate>
-
         <div class="row">
 
           <div class="small-6 columns">
-            <input type="text" ng-model = "newQuestion" only-math id = "question">
+            <input type="text" only-math id = "question" ng-model = "passedQuestion.question">
           </div>
 
           <div class="small-6 columns">
-            <label for="question" class = "left inline"> = {{newAnswer}}</label>
+            <label for="question" class = "left inline">={{passedQuestion.answer}}</label>
           </div>
 
-          <input type = "submit"></input>
+          <input type = "submit" ></input>
+          <!-- <button ng-click = "pushToArray()">Push to array</button> -->
 
         </div>
-
       </form>
 
   </div>

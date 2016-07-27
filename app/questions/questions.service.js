@@ -9,12 +9,13 @@
       var service = {
         saveQuestion: saveQuestion,
         solveQuestion: solveQuestion,
-        fetchQuestions: fetchQuestions
+        fetchQuestions: fetchQuestions,
+        test:test
       };
       return service;
 
       function saveQuestion(question, answer){
-        $http({
+        return $http({
           method: "POST",
           url: "/newquestion",
           headers: {
@@ -26,16 +27,16 @@
           }
         })
         .then(function(success){
-          console.log("success: "+ success);
-        }, function(fail){
-          console.log("fail: " + fail);
+          return success;
+        })
+        .catch(function (error){
+          return error;
         });
       }
 
       function fetchQuestions(){
         return $http.get("/questions")
         .then(function(response){
-          console.log(response.data);
           return response.data;
         })
         .catch(function(error){
@@ -45,6 +46,10 @@
 
       function solveQuestion(question){
         return eval(question);
+      }
+
+      function test(){
+        console.log("You're in the question service");
       }
     }
 

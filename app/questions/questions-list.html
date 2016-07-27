@@ -1,29 +1,15 @@
 <ol>
   <li ng-repeat = "question in questionsArray">
-    <span>id: {{question._id}}</span>
     <span>
       {{question.question}} = {{question.answer}}
       <a ng-click = "edit()">Edit</a>
     </span>
 
-    <form ng-submit = "updateQuestion()" novalidate>
+    <question-form question = "question" questions-array = "questionsArray" refresh = "fetchQuestions"></question-form>
 
-      <div class="row">
-        <div class="small-6 columns">
-          <input type="text" ng-model = "question.question" only-math id = "question">
-        </div>
-        <div class="small-6 columns">
-          <span class = "left inline"> = {{question.answer}}</span>
-        </div>
-        <input type = "submit" ></input>
-      </div>
-    </form>
+    <button ng-click = "logScope()">Log scope</button>
+
     <hr>
   </li>
 
 </ol>
-
-1. editing mode = true
-2. Template changes based on editing = true
-<!--
-i can do this. take your time. think it through step by step. spot where you get stuck. don't react to pressure. -->
