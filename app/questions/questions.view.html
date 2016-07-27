@@ -1,17 +1,11 @@
-<h1>Homework 1</h1>
+<div class="container row">
+  <div class="large-12 columns">
 
-<form ng-submit = "saveQuestion()" novalidate>
+    <question-form></question-form>
 
-  <input type="text" ng-model = "newQuestion" only-math>
-  <button type = "submit" hidden>Submit</button>
+    <questions-list ng-show = "questionsArray.length > 0"></questions-list>
 
-</form>
+    <button ng-click = "fetchQuestions()">Fetch questions</button>
 
-<div ng-show = "questionsArray.length > 0">
-<h4>Questions:</h4>
-  <ol>
-    <li ng-repeat= "question in questionsArray">{{question.question}} = {{question.answer}}</li>
-  </ol>
-</div>
-
-<button ng-click = "fetchQuestions()" class = "button">Fetch questions</button>
+  </div> <!-- container columns-->
+</div> <!-- container  -->

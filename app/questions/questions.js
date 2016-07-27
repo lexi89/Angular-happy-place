@@ -11,11 +11,11 @@
       var qs = questionservice;
 
       _.newQuestion = "";
-      _.typing = false;
       _.newAnswer = "";
-      _.questionsArray = [];
+      _.questionsArray = [{"question":"1+2", "answer":"3"}, {"question": "3+4", "answer": "7"}]; //dummy data
       _.saveQuestion = saveQuestion;
       _.fetchQuestions = fetchQuestions;
+      _.editQuestion = editQuestion;
 
       _.$watch("newQuestion", function(){
         if (!isNaN(_.newQuestion.slice(-1))){
@@ -26,14 +26,24 @@
 
       function saveQuestion(){
         qs.saveQuestion(_.newQuestion,_.newAnswer);
-        _.$apply(function(){
-          _.questionsArray.push({
-            question: _.newQuestion,
-            answer: _.newAnswer
-          });
-          _.newQuestion = "";
-          fetchQuestions();
-        });
+        // _.$apply(function(){
+        //   _.questionsArray.push({
+        //     question: _.newQuestion,
+        //     answer: _.newAnswer
+        //   });
+        _.newQuestion = "";
+        fetchQuestions();
+      }
+
+
+      function editQuestion(){
+        // this = the scope of the iterated question.
+        console.log(this);
+        // on click, change the li to a form.
+      }
+
+      function updateQuestion(){
+        console.log("update the question");
       }
 
       function fetchQuestions(){
@@ -46,9 +56,7 @@
         });
       }
 
-      function updateQuestion(){
-        // post a question update to the database.
-      }
+
     }
 
     function config($routeProvider){
