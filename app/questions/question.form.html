@@ -1,19 +1,7 @@
-<div class="question row">
-  <div class="large-12 columns">
-      <form ng-submit = "saveQuestion()" novalidate>
-        <div class="row">
-
-          <div class="small-6 columns">
-            <input type="text" only-math id = "question" ng-model = "question.question">
-          </div>
-
-          <div class="small-6 columns">
-            <label for="question" class = "left inline">= {{question.answer}}</label>
-          </div>
-
-          <input type = "submit" ></input>
-        </div>
-      </form>
-
-  </div>
-</div>
+  <form ng-submit = "saveQuestion()" novalidate>
+    <span class="question-input-wrapper">
+      <input type="text" only-math id = "question" ng-model = "question.question">
+      <span>Answer</span>
+    </span>
+    <input type = "submit" hidden></input>
+  </form>

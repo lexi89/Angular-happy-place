@@ -31,6 +31,16 @@ module.exports = function(app){
     });
   });
 
+  app.delete("/question", function(req, res){
+    Questions.findOneAndRemove({_id: req.body._id})
+    .then(function (response) {
+      res.send(respone);
+    })
+    .catch(function (err) {
+      res.send(err);
+    });
+  });
+
   app.post("/newquestion", function(req, res){
     // create a new question
     var newQuestion = Questions({
@@ -45,9 +55,6 @@ module.exports = function(app){
     })
     .catch(function(err){
       res.send("Something went wrong: " + err );
-    })
-    .done(function(){
-      console.log("done");
     });
 
   });

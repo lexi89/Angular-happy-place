@@ -3,9 +3,12 @@ angular
 .directive("questionForm", function(){
   return{
     templateUrl: "/questions/question.form.html",
+    replace: false,
 
     controller: ["$scope", "questions.service", function($scope, questionservice){
       var qs = questionservice;
+
+      $scope.editMode = false;
 
       // watch for question changes
       $scope.$watch("question.question",
@@ -16,6 +19,11 @@ angular
           thisQuestion.answer = qs.solveQuestion(thisQuestion.question);
         }
       });
+
+      $scope.toggleEditMode = function(){
+        $scope.editMode = !$scope.editMode;
+      };
+
     }]
   };
 });

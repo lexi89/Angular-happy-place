@@ -18,15 +18,10 @@ gulp.task('browser-sync',["nodemon"], function() {
 });
 
 gulp.task("sass", function(){
-  console.log("Running 'sass'");
   return gulp.src("./app/assets/css/main.scss")
-  .pipe(sass({
-    style: "compressed",
-    errLogToConsole:false,
-    onError: function(err){
-      return notify().write(err);
-    }
-  }))
+  .pipe(sass({outputStyle: "compressed"})
+    .on("error", sass.logError)
+  )
   .pipe(autoprefixer({
     browsers: ["last 2 versions"]
   }))

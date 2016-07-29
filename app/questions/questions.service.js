@@ -11,6 +11,7 @@
         solveQuestion: solveQuestion,
         updateQuestion: updateQuestion,
         fetchQuestions: fetchQuestions,
+        deleteQuestion: deleteQuestion
       };
       return service;
 
@@ -27,12 +28,30 @@
           }
         })
         .then(function(success){
-          console.log("new question saved");
           return success;
         })
         .catch(function (error){
           console.log("couldn't save new question");
           return error;
+        });
+      }
+
+      function deleteQuestion(question){
+        return $http({
+          method: "DELETE",
+          url: "/question",
+          headers:{
+            "Content-type": "application/json"
+          },
+          data:{
+            "_id": question._id
+          }
+        })
+        .then(function (success) {
+          return success;
+        })
+        .catch(function (err) {
+          return err;
         });
       }
 

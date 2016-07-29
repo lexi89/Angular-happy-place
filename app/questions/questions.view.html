@@ -1,16 +1,19 @@
-<span>{{question.question}} = {{question.answer}}</span>
-<question-form></question-form>
+<div class="questions-view-wrapper row">
+  <div class="large-12 columns">
+    <h1>Add a new question:</h1>
+    <question-form class = "new-question"></question-form>
 
-<ol>
-  <li ng-repeat = "question in questionsArray">
-    <span>
-      {{question.question}} = {{question.answer}}
-      <a ng-click = "edit()">Edit</a>
-    </span>
+    <div ng-repeat = "question in savedQuestions" class = " saved-question">
+      <span>{{$index + 1}}.</span>
+      <span ng-hide = "editMode">{{question.question}} = {{question.answer}}</span>
+      <question-form ng-show = "editMode" class = "inline"></question-form>
 
-    <question-form></question-form>
+      <span class="controls">
+        <a ng-click = "toggleEditMode()"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+        <a ng-click = "deleteQuestion()"><i class="fa fa-trash" aria-hidden="true"></i></a>
+      </span>
+    </div>
+  </div>
 
-    <hr>
-  </li>
 
-</ol>
+</div>

@@ -11,20 +11,13 @@
       var qs = questionservice;
 
       _.question = {"question":"", "answer":""};
-      _.questionsArray = [
-        {
-          "_id": "875643",
-          "question":"1+2",
-          "answer":"3"
-        },
-        {
-          "_id": "213456",
-          "question": "3+4",
-          "answer": "7"
-        }];
+      _.savedQuestions = [];
       _.saveQuestion = saveQuestion;
       _.fetchQuestions = fetchQuestions;
       _.resetQuestion = resetQuestion;
+      _.deleteQuestion = deleteQuestion;
+
+      fetchQuestions();
 
       function saveQuestion(){
         if (!this.question._id){
@@ -32,6 +25,7 @@
           resetQuestion();
           fetchQuestions();
         } else {
+          _.savedQuestions.push(this.question); // immediate feedback for user
           qs.updateQuestion(this.question);
           fetchQuestions();
         }
@@ -40,10 +34,22 @@
       function fetchQuestions(){
         qs.fetchQuestions()
         .then(function(data){
-          _.questionsArray = data;
+          _.savedQuestions = data;
         })
         .catch(function(error){
           console.log(error);
+        });
+      }
+
+      function deleteQuestion(){
+        console.log("Deleting question...");
+        _.savedQuestions.splice(this.$index, 1);
+        qs.deleteQuestion(this.question)
+        .then(function (success) {
+          // question saved!
+        })
+        .catch(function (fail) {
+          // question failed to save!
         });
       }
 
