@@ -9,12 +9,12 @@
       var service = {
         saveQuestion: saveQuestion,
         solveQuestion: solveQuestion,
+        updateQuestion: updateQuestion,
         fetchQuestions: fetchQuestions,
-        test:test
       };
       return service;
 
-      function saveQuestion(question, answer){
+      function saveQuestion(question){
         return $http({
           method: "POST",
           url: "/newquestion",
@@ -22,15 +22,38 @@
             "Content-type" : "application/json"
           },
           data: {
-            "question": question,
-            "answer": answer
+            "question": question.question,
+            "answer": question.answer
+          }
+        })
+        .then(function(success){
+          console.log("new question saved");
+          return success;
+        })
+        .catch(function (error){
+          console.log("couldn't save new question");
+          return error;
+        });
+      }
+
+      function updateQuestion(question){
+        return $http({
+          method: "POST",
+          url: "/question",
+          headers:{
+            "Content-type" : "application/json"
+          },
+          data:{
+            "_id": question._id,
+            "question": question.question,
+            "answer": question.answer
           }
         })
         .then(function(success){
           return success;
         })
-        .catch(function (error){
-          return error;
+        .catch(function(fail){
+          return fail;
         });
       }
 
@@ -46,10 +69,6 @@
 
       function solveQuestion(question){
         return eval(question);
-      }
-
-      function test(){
-        console.log("You're in the question service");
       }
     }
 

@@ -1,4 +1,4 @@
-
+(function(){
   angular
     .module("questions",["ngRoute"])
     .controller("questionsCtrl", QuestionsController)
@@ -10,7 +10,7 @@
       var _ = $scope;
       var qs = questionservice;
 
-      _.newQuestion = {"question":"", "answer":""};
+      _.question = {"question":"", "answer":""};
       _.questionsArray = [
         {
           "_id": "875643",
@@ -24,34 +24,32 @@
         }];
       _.saveQuestion = saveQuestion;
       _.fetchQuestions = fetchQuestions;
-      _.logScope = logScope;
+      _.resetQuestion = resetQuestion;
 
       function saveQuestion(){
-        qs.saveQuestion(_.newQuestion,_.newAnswer);
-        // _.$apply(function(){
-        //   _.questionsArray.push({
-        //     question: _.newQuestion,
-        //     answer: _.newAnswer
-        //   });
-        _.newQuestion = "";
-        fetchQuestions();
+        if (!this.question._id){
+          qs.saveQuestion(this.question);
+          resetQuestion();
+          fetchQuestions();
+        } else {
+          qs.updateQuestion(this.question);
+          fetchQuestions();
+        }
       }
 
       function fetchQuestions(){
-        console.log("gonna fetch some q's");
-        // qs.fetchQuestions()
-        // .then(function(data){
-        //   _.questionsArray = data;
-        // })
-        // .catch(function(error){
-        //   console.log(error);
-        // });
+        qs.fetchQuestions()
+        .then(function(data){
+          _.questionsArray = data;
+        })
+        .catch(function(error){
+          console.log(error);
+        });
       }
 
-      function logScope(){
-        console.log($scope);
+      function resetQuestion(){
+        _.question = {"question":"", "answer":""};
       }
-
 
     }
 
@@ -62,3 +60,5 @@
         controllerAs: "questions"
       });
     }
+
+})();
