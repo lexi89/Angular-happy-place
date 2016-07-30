@@ -4,6 +4,15 @@ angular
   return{
     templateUrl: "/questions/question.form.html",
     replace: false,
+    link: function(scope, elem){
+      if (elem.parent().hasClass("ng-scope")){
+        elem.parent().on("click", function(){
+          console.log(scope)
+          elem.scope.toggleEditMode();
+        });
+        // not working.
+      }
+    },
 
     controller: ["$scope", "questions.service", function($scope, questionservice){
       var qs = questionservice;

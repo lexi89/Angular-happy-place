@@ -1,17 +1,28 @@
 <div class="questions-view-wrapper row">
   <div class="large-12 columns">
+
     <h1>Add a new question:</h1>
     <question-form class = "new-question"></question-form>
+    <br>
+    <h3>Saved questions:</h3>
+    <br>
+    <div ng-repeat = "question in savedQuestions" class = "saved-question-wrapper">
 
-    <div ng-repeat = "question in savedQuestions" class = " saved-question">
-      <span>{{$index + 1}}.</span>
-      <span ng-hide = "editMode">{{question.question}} = {{question.answer}}</span>
+      <div class = "saved-question-number"><span>{{$index + 1}}. &nbsp</span></div>
+      <div ng-hide = "editMode" class = "full-width">
+
+        <span ng-click = "toggleEditMode()" class = "saved-question-question">{{question.question}}</span>
+
+        <span class = "saved-question-answer"> = {{question.answer}}</span>
+
+      </div>
+
       <question-form ng-show = "editMode" class = "inline"></question-form>
 
-      <span class="controls">
+      <div class="controls">
         <a ng-click = "toggleEditMode()"><i class="fa fa-pencil" aria-hidden="true"></i></a>
         <a ng-click = "deleteQuestion()"><i class="fa fa-trash" aria-hidden="true"></i></a>
-      </span>
+      </div>
     </div>
   </div>
 

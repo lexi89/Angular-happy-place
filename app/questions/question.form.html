@@ -1,7 +1,7 @@
-  <form ng-submit = "saveQuestion()" novalidate>
-    <span class="question-input-wrapper">
-      <input type="text" only-math id = "question" ng-model = "question.question">
-      <span>Answer</span>
-    </span>
-    <input type = "submit" hidden></input>
-  </form>
+<form ng-submit = "saveQuestion()" novalidate>
+  <span class="question-input-wrapper">
+    <input type="text" only-math id = "question" ng-model = "question.question">
+    <span class = "saved-question-answer">= {{question.answer}}</span>
+  </span>
+  <input type = "submit" hidden></input>
+</form>

@@ -21,13 +21,16 @@
 
       function saveQuestion(){
         if (!this.question._id){
+          _.savedQuestions.push(this.question); // immediate feedback for user
           qs.saveQuestion(this.question);
           resetQuestion();
           fetchQuestions();
         } else {
-          _.savedQuestions.push(this.question); // immediate feedback for user
-          qs.updateQuestion(this.question);
-          fetchQuestions();
+          qs.updateQuestion(this.question)
+          .then(function(){
+            fetchQuestions();
+          });
+
         }
       }
 
@@ -42,7 +45,6 @@
       }
 
       function deleteQuestion(){
-        console.log("Deleting question...");
         _.savedQuestions.splice(this.$index, 1);
         qs.deleteQuestion(this.question)
         .then(function (success) {

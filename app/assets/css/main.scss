@@ -4,10 +4,12 @@ body{
   font-family: "Lora", serif;
   font-size: 20px;
   width: 100%;
+  color: #545454;
 }
 
 h1,h2,h3,h4,h5,h6{
   font-family: 'Open Sans', sans-serif;
+  color: #545454;
 }
 
 .questions-view-wrapper{
@@ -16,35 +18,77 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .question-input-wrapper{
-  width: 40%;
+  width: 100%;
 }
 
 input[type=text]{
+  width: 40%;
   font-size: 2rem;
   border: 0px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #545454;
   background-color: transparent;
   box-shadow: none;
   display: inline-block;
+  color: #545454;
 }
 
 .controls{
+  width: 10%;
   display: none;
-  float: right;
+  position: absolute;
+  right: 20px;
+  z-index: 10;
 }
 
+.inline{
+  width: 100%;
+  display: flex;
+  & input[type=text]{
+    padding-left: 0px;
+    margin-bottom: 6px;
+    width: 30%;
+    background-color: transparent;
+  }
+}
 .inline > form{
-  width: 50%;
+  width: 100%;
   display: inline-block;
 }
 
-.saved-question{
+.saved-question-wrapper{
+  padding: 20px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
   &:hover{
+    cursor: default;
+    background-color: rgba(orange, 0.3);
     .controls{
-      display: block;
+      display: inline-block;
     }
   }
 }
+
+.saved-question-number{
+  display: inline-table;
+  height: 50%;
+}
+
+.saved-question-question{
+  min-width: 30%;
+  display: inline-block;
+}
+
+.saved-question-answer{
+  color: lighten(#545454, 30%);
+}
+
+.full-width{
+  display: inline-block;
+  width: 100%;
+}
+
+
 
 // for angular ng-cloak
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
