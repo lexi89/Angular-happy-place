@@ -4,16 +4,21 @@ angular
   return{
     templateUrl: "/questions/question.form.html",
     replace: false,
-    link: function(scope, elem){
-      if (elem.parent().hasClass("ng-scope")){
-        elem.parent().on("click", function(){
-          console.log(scope)
-          elem.scope.toggleEditMode();
-        });
-        // not working.
-      }
+    compile: function(element, attributes){
+      return{
+        post: function(scope, elem){
+          if (elem.parent().hasClass("ng-scope")){
+            elem.parent().on("click", function(){
+              if (!scope.editMode){
+                scope.$apply(function(){
+                  scope.toggleEditMode();
+                });
+              }
+            });
+          }
+        }
+      };
     },
-
     controller: ["$scope", "questions.service", function($scope, questionservice){
       var qs = questionservice;
 
