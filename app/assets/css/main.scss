@@ -61,8 +61,8 @@ input[type=text]{
   display: flex;
   align-items: center;
   &:hover{
-    cursor: default;
-    background-color: rgba(orange, 0.3);
+    cursor: pointer;
+    background-color: rgba(gray, 0.1);
     .controls{
       display: inline-block;
     }

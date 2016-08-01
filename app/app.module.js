@@ -2,5 +2,6 @@
 
 var app = angular.module("app", [
   'ngRoute',
-  'questions'
+  'questions',
+  'auth'
 ]);

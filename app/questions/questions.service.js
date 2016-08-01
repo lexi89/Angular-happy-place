@@ -30,9 +30,8 @@
         .then(function(success){
           return success;
         })
-        .catch(function (error){
-          console.log("couldn't save new question");
-          return error;
+        .catch(function (response){
+          return response.data;
         });
       }
 

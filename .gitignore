@@ -1,3 +1,4 @@
+config/auth.js
 node_modules
 /app/assets/libs/bower
 npm-debug.log

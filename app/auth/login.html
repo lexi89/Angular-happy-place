@@ -1,0 +1,22 @@
+<h1>Lets login muh fucka</h1>
+<button ng-click = "facebookLogin()" class = "large button ">Facebook</button>
+
+<div class="row">
+  <div class="small-6 columns">
+
+    <form ng-submit = "localLogin()" novalidate>
+
+      <label for="name">Name</label>
+      <input type="text" name = "name" ng-model = "user.name"><br>
+
+      <label for="email">Email</label>
+      <input type="email" name = "email" ng-model = "user.email"><br>
+
+      <label for="password">Password</label>
+      <input type="password" ng-model = "user.password">
+
+      <input type = "submit" hidden>
+    </form>
+
+  </div>
+</div>
