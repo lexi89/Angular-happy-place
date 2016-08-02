@@ -1,14 +1,8 @@
-var bodyParser = require("body-parser");
 var Users = require("../models/userModel.js");
+var bodyParser = require("body-parser");
 
-module.exports = function(app){
 
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({extended:true}));
-
-  app.get("/fblogin", function(req, res){
-    passport.authenticate("facebook");
-  });
+module.exports = function(app, passport){
 
   app.post("/register", function(req, res){
     var newUser = Users({
@@ -26,5 +20,4 @@ module.exports = function(app){
       res.send(err);
     });
   });
-
 };

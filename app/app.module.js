@@ -3,5 +3,6 @@
 var app = angular.module("app", [
   'ngRoute',
   'questions',
-  'auth'
+  'auth',
+  'ngCookies'
 ]);

@@ -11,8 +11,8 @@
 
       $scope.facebookLogin = service.facebookLogin;
 
-      $scope.localLogin = function(){
-        return service.localLogin($scope.user.name, $scope.user.email, $scope.user.password)
+      $scope.localRegister = function(){
+        return service.localRegister($scope.user.name, $scope.user.email, $scope.user.password)
         .then(function(success){
           $location.path("/");
           // success. Take user to dashboard.
@@ -20,10 +20,25 @@
           // couldn't register, respond with an error.
         });
       };
+
+      $scope.localLogin = function(){
+        return service.localLogin($scope.user.email, $scope.user.password)
+        .then(function(success){
+          $location.path("/");
+        }, function(errors){
+          // couldn't login. handle errors.
+        });
+
+      };
     }
 
     function config($routeProvider){
-      $routeProvider.when("/login", {
+      $routeProvider
+      .when("/register", {
+        templateUrl: "/auth/register.html",
+        controller: "authCtrl"
+      })
+      .when("/login", {
         templateUrl: "/auth/login.html",
         controller: "authCtrl"
       });
