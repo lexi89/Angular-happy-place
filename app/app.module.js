@@ -10,7 +10,6 @@ angular.module("app", [
 
   $rootScope.$on("$routeChangeStart", function(event, next, current){
     console.log(next.$$route.authenticate);
-
   });
 
   // FB init

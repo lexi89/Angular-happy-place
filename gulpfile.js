@@ -19,7 +19,10 @@ gulp.task('browser-sync',["nodemon"], function() {
 
 gulp.task("sass", function(){
   return gulp.src("./app/assets/css/main.scss")
-  .pipe(sass({outputStyle: "compressed"})
+  .pipe(sass({
+    outputStyle: "compressed",
+    includePaths: ['./app/assets/libs/bower/foundation-sites/scss']
+  })
     .on("error", sass.logError)
   )
   .pipe(autoprefixer({

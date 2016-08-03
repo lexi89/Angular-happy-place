@@ -21,20 +21,22 @@
 
       function saveQuestion(){
         if (!this.question._id){
+          qs.saveQuestion(this.question)
+          .then(function(){
+            fetchQuestions();
+          });
           _.savedQuestions.push(this.question); // immediate feedback for user
-          qs.saveQuestion(this.question);
           resetQuestion();
-          fetchQuestions();
         } else {
           qs.updateQuestion(this.question)
           .then(function(){
             fetchQuestions();
           });
-
         }
       }
 
       function fetchQuestions(){
+        console.log('fetching questions...');
         qs.fetchQuestions()
         .then(function(data){
           _.savedQuestions = data;

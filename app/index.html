@@ -7,7 +7,7 @@
   <!-- Normalize -->
   <link rel="stylesheet" href="/assets/libs/bower/normalize-css/normalize.css">
   <!-- Foundation -->
-  <link rel="stylesheet" href="/assets/libs/bower/foundation/css/foundation.css">
+  <!-- <link rel="stylesheet" href="/assets/libs/bower/foundation/css/foundation.css"> -->
   <!-- Font Awesome.min -->
   <link rel="stylesheet" href="/assets/fonts/font-awesome-4.6.3/css/font-awesome.min.css">
   <!-- Custom -->
@@ -15,18 +15,31 @@
 </head>
 
 <body ng-cloak>
-  
   <div class="container row">
     <div class="large-12 columns">
-      <div ng-view></div>
+
+      <menu></menu>
+
+      <div class="row">
+        <div class="large-12 columns">
+          <div ng-view></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
+  <!-- jQuery only included for Foundation. Remove if unnecessary. -->
+  <script src = "/assets/libs/bower/jquery/dist/jquery.min.js"></script>
+  <script src="/assets/libs/bower/foundation-sites/dist/foundation.min.js"></script>
+
+  <!-- Angular modules -->
   <script src="/assets/libs/bower/angular/angular.js"></script>
   <script src="/assets/libs/bower/angular-route/angular-route.js"></script>
 
   <script src="app.module.js"></script>
   <script src = "/shared/flash.js"></script>
+  <script src="/shared/menu/menu.js"></script>
   <script src="/questions/questions.js"></script>
   <script src="/questions/questions.service.js"></script>
   <script src="/questions/questions.onlymath.directive.js"></script>
