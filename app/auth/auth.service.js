@@ -2,19 +2,28 @@
   angular.module("auth")
   .factory("authService", service);
 
-  service.$inject = ["$http", "$q", "$cookies"];
+  service.$inject = ["$http", "$q"];
 
-  function service($http, $q, $cookies){
+  function service($http, $q){
     var service = {
       facebookLogin: facebookLogin,
       localRegister: localRegister,
-      localLogin: localLogin
+      localLogin: localLogin,
+      facebookLogout: facebookLogout
     };
 
     return service;
     ////////////////////////////
     function facebookLogin(){
-      // fblogin
+      FB.login(function(response){
+        console.log(response);
+      });
+    }
+
+    function facebookLogout(){
+      FB.logout(function(response){
+        console.log(response);
+      });
     }
 
     function localRegister(username, email, password){

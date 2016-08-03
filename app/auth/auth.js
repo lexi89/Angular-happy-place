@@ -11,6 +11,12 @@
 
       $scope.facebookLogin = service.facebookLogin;
 
+      $scope.facebookLogout = service.facebookLogout;
+
+      $scope.userInfo = function(){
+        FB.api("/me", )
+      }
+
       $scope.localRegister = function(){
         return service.localRegister($scope.user.name, $scope.user.email, $scope.user.password)
         .then(function(success){
@@ -36,11 +42,13 @@
       $routeProvider
       .when("/register", {
         templateUrl: "/auth/register.html",
-        controller: "authCtrl"
+        controller: "authCtrl",
+        authenticate: true
       })
       .when("/login", {
         templateUrl: "/auth/login.html",
-        controller: "authCtrl"
+        controller: "authCtrl",
+        authenticate: false
       });
     }
 

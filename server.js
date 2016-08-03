@@ -22,7 +22,9 @@ app.use(express.static("app"));
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-
+app.use(function(req, res, next){
+  console.log("new request!" + req);
+});
 // passport strategies setup
 passport.use(new LocalStrategy(
   function(username, password, done){
@@ -41,9 +43,6 @@ passport.use(new LocalStrategy(
 app.post("/login", function(req, res, next){
   console.log(req.body);
   passport.authenticate("local", function(err, user, info){
-    console.log(err)
-    console.log(user)
-    console.log(info)
     if (err) {
       return next(err);
     }
