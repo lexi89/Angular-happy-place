@@ -14,7 +14,7 @@
       $scope.facebookLogout = service.facebookLogout;
 
       $scope.userInfo = function(){
-        FB.api("/me", )
+        
       }
 
       $scope.localRegister = function(){
