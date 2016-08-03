@@ -1,6 +1,4 @@
-USERNAME = "lexi89";
-PASSWORD = "hacking1";
-
+var secrets = require("./config/secrets.js");
 var express = require("express");
 var app = express();
 var apiController = require("./controllers/apiController");
@@ -22,6 +20,9 @@ app.use(express.static("app"));
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(function(){
+  console.log(secrets);
+});
 // passport strategies setup
 passport.use(new LocalStrategy(
   function(username, password, done){
@@ -55,7 +56,7 @@ app.get("/", function (req, res) {
 });
 
 // connect to mongo
-mongoose.connect("mongodb://" + USERNAME + ":" + PASSWORD + "@ds029675.mlab.com:29675/questions");
+mongoose.connect("mongodb://" + secrets.mongo.USERNAME + ":" + secrets.mongo.PASSWORD + "@ds029675.mlab.com:29675/questions");
 var db = mongoose.connection;
 
 // setup APIs
