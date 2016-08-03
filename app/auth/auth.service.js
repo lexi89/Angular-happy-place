@@ -9,14 +9,28 @@
       facebookLogin: facebookLogin,
       localRegister: localRegister,
       localLogin: localLogin,
-      facebookLogout: facebookLogout
+      facebookLogout: facebookLogout,
+      oauthLogin: oauthLogin
     };
 
     return service;
     ////////////////////////////
     function facebookLogin(){
       FB.login(function(response){
-        console.log(response);
+        facebookID = response.authResponse.userID;
+        FB.api("/" + facebookID + "?fields=email", function(user){
+          oauthLogin(user.email, user.id);
+        });
+
+
+
+        // user logs in with FB.
+        // grab user's email address from FB api.
+        // log the user in via local portal with their email address and facebookID.
+      },
+      {
+        scope: 'email, public_profile',
+        return_scopes: true
       });
     }
 
@@ -46,7 +60,29 @@
       });
     }
 
-    function localLogin(email, password){
+    function oauthLogin(email, id){
+      return $http({
+        method: "POST",
+        url: "oauthlogin",
+        headers:{
+          "Content-type": "application/json"
+        },
+        data: {
+          "email" : email,
+          "id": id
+        }
+      })
+      .then(function(response){
+        console.log(response);
+      })
+      .catch(function(err){
+        console.log(err);
+      });
+    }
+
+    function localLogin(email, password, oauthID){
+      // 2 types of local login. via oAuth or form.
+
       return $http({
         method: "POST",
         url: "/login",

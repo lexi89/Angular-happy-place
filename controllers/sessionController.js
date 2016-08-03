@@ -20,4 +20,21 @@ module.exports = function(app, passport){
       res.send(err);
     });
   });
+
+  app.post("/oauthlogin", function(req, res){
+    console.log(req.body);
+    Users.findOne({email:req.body.email})
+    .then(function(user){
+      console.log(user);
+      if (user){
+        res.status(200).send("logged in!");
+      } else {
+        res.status(400).send("No user found");
+      }
+    })
+    .catch(function(err){
+      console.log(err);
+      res.status(400).send("Something went wrong in the lookup...");
+    });
+  });
 };

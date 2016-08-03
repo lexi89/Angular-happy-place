@@ -8,9 +8,9 @@ angular.module("app", [
 
   $rootScope.user = {};
 
-  $rootScope.$on("$routeChangeStart", function(event, next, current){
-    console.log(next.$$route.authenticate);
-  });
+  // $rootScope.$on("$routeChangeStart", function(event, next, current){
+  //   console.log(next.$$route.authenticate);
+  // });
 
   // FB init
 

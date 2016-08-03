@@ -13,7 +13,7 @@ gulp.task('browser-sync',["nodemon"], function() {
         files: ["app/**/*.*"],
         port:3000
     });
-    gulp.watch("./app/assets/css/main.scss", ["sass"]);
+    gulp.watch("./app/assets/css/*.scss", ["sass"]);
     gulp.watch(["*.html", "*.js"], browserSync.reload);
 });
 

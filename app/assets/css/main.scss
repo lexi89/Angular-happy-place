@@ -12,6 +12,9 @@ body{
 
 }
 
+menu{
+  padding-left: 0px;
+}
 h1,h2,h3,h4,h5,h6{
   font-family: 'Open Sans', sans-serif;
   color: #545454;
@@ -29,7 +32,7 @@ h1,h2,h3,h4,h5,h6{
   width: 100%;
 }
 
-input[type=text]{
+#question{
   width: 40%;
   font-size: 2rem;
   border: 0px;
@@ -56,7 +59,7 @@ input[type=text]{
 .inline{
   width: 100%;
   display: flex;
-  & input[type=text]{
+  & #question{
     padding-left: 0px;
     margin-bottom: 6px;
     width: 30%;

@@ -20,9 +20,7 @@ app.use(express.static("app"));
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(function(){
-  console.log(secrets);
-});
+
 // passport strategies setup
 passport.use(new LocalStrategy(
   function(username, password, done){
