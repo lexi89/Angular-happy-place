@@ -7,14 +7,16 @@
     AuthCtrl.$inject = ["$scope","$location",  "authService"];
 
     function AuthCtrl($scope, $location, service){
-      $scope.user = {name: "", email: "", password: ""};
+      $scope.user = {};
 
       $scope.facebookLogin = service.facebookLogin;
 
       $scope.facebookLogout = service.facebookLogout;
 
+      $scope.facebookRegister = service.facebookRegister;
+
       $scope.userInfo = function(){
-        
+
       }
 
       $scope.localRegister = function(){

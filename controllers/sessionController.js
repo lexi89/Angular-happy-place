@@ -1,5 +1,10 @@
 var Users = require("../models/userModel.js");
 var bodyParser = require("body-parser");
+var bcrypt = require("bcrypt");
+var secrets = require("../config/secrets");
+
+var saltRounds = 10;
+var bPassword = secrets.bcrypt.password;
 
 
 module.exports = function(app, passport){
@@ -21,8 +26,25 @@ module.exports = function(app, passport){
     });
   });
 
+  app.post("/oauthregister", function(req, res){
+    // create a hashed password from the fb id.
+    var newPassword = bcrypt.hashSync(req.body.id, saltRounds);
+    var newUser = Users({
+      name: req.body.id,
+      email: req.body.email,
+      password: newPassword
+    });
+    console.log(newUser);
+    newUser.save()
+    .then(function(success){
+      res.status(200).send(success);
+    })
+    .catch(function(err){
+      res.status(500).send(err);
+    });
+  });
+
   app.post("/oauthlogin", function(req, res){
-    console.log(req.body);
     Users.findOne({email:req.body.email})
     .then(function(user){
       console.log(user);

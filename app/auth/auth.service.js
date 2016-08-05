@@ -2,11 +2,12 @@
   angular.module("auth")
   .factory("authService", service);
 
-  service.$inject = ["$http", "$q"];
+  service.$inject = ["$http", "$q", "$location"];
 
-  function service($http, $q){
+  function service($http, $q, $location){
     var service = {
       facebookLogin: facebookLogin,
+      facebookRegister: facebookRegister,
       localRegister: localRegister,
       localLogin: localLogin,
       facebookLogout: facebookLogout,
@@ -15,23 +16,60 @@
 
     return service;
     ////////////////////////////
+
     function facebookLogin(){
-      FB.login(function(response){
-        facebookID = response.authResponse.userID;
-        FB.api("/" + facebookID + "?fields=email", function(user){
-          oauthLogin(user.email, user.id);
+      getFacebookUser()
+      .then(function(user){
+        oauthLogin(user);
+      },function(error){
+        console.log(error);
+      });
+    }
+
+    function facebookRegister(){
+      getFacebookUser()
+      .then(function(user){
+        return $http({
+          url: "/oauthregister",
+          method: "POST",
+          headers: {
+            "Content-type" : "application/json"
+          },
+          data: {
+            "name": user.email,
+            "id": user.id,
+            "email": user.email
+          }
+        })
+        .then(function (response) {
+          return response;
+        })
+        .catch(function (err) {
+          return err;
         });
+      }, function(error){
+        console.log(error);
+      });
+    }
 
+    function getFacebookUser(){
+      var user = {};
+      var defer = $q.defer();
 
+      FB.login(function(response){
+        user.id = response.authResponse.userID;
 
-        // user logs in with FB.
-        // grab user's email address from FB api.
-        // log the user in via local portal with their email address and facebookID.
+        FB.api("/" + user.id + "?fields=email", function(response){
+          user.email = response.email;
+          defer.resolve(user);
+        });
       },
       {
         scope: 'email, public_profile',
         return_scopes: true
       });
+
+      return defer.promise;
     }
 
     function facebookLogout(){
@@ -60,7 +98,7 @@
       });
     }
 
-    function oauthLogin(email, id){
+    function oauthLogin(user){
       return $http({
         method: "POST",
         url: "oauthlogin",
@@ -68,12 +106,13 @@
           "Content-type": "application/json"
         },
         data: {
-          "email" : email,
-          "id": id
+          "email" : user.email,
+          "id": user.id
         }
       })
       .then(function(response){
         console.log(response);
+        $location.path("/");
       })
       .catch(function(err){
         console.log(err);
