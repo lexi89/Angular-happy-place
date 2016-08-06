@@ -1,9 +1,6 @@
-<h1>Register</h1>
-<button ng-click = "facebookRegister()" class = "large button ">Register with Facebook</button>
-
-<div class="row">
-  <div class="small-6 columns">
-
+<div class="row login-wrapper">
+  <div class="medium-4 medium-centered small-10 small-offset-1 columns">
+    <h3>Register</h3>
     <form ng-submit = "localRegister()" novalidate>
 
       <label for="name">Name</label>
@@ -15,8 +12,16 @@
       <label for="password">Password</label>
       <input type="password" ng-model = "user.password">
 
-      <input type = "submit" hidden>
+      <input type = "submit" value = "Sign up" class = "button">
     </form>
-
   </div>
+
+</div>
+
+<div class="row">
+  <div class="medium-4 medium-centered small-10 small-offset-1 social-login">
+    <h3>...or register with:</h3>
+    <button ng-click = "facebookRegister()" class = "large button ">Facebook</button>
+  </div>
+
 </div>
