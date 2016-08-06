@@ -104,8 +104,46 @@ h1,h2,h3,h4,h5,h6{
   width: 100%;
 }
 
+.flash{
+  max-width: 30%;
+  margin: 0 auto;
+  position: absolute;
+  top:10vh;
+  left: 50%;
+  opacity:0;
+}
 
+.flash.ng-enter{
+  animation-name: flash_message;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
 
+@keyframes flash_message{
+  0% {
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.flash.ng-enter-active{
+  opacity:0;
+}
+
+.login-wrapper{
+  display: flex;
+  align-items: center;
+}
+.social-login{
+  padding: 20px;
+  border: 1px solid $primary-color;
+  text-align: center;
+}
 // for angular ng-cloak
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;

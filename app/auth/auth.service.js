@@ -18,12 +18,19 @@
     ////////////////////////////
 
     function facebookLogin(){
-      getFacebookUser()
+      var defer = $q.defer();
+
+      getFacebookUser() // Ask the user to login to FB.
       .then(function(user){
-        oauthLogin(user);
+        oauthLogin(user) // then log them into our system.
+        .then(function(response){
+          defer.resolve(response); // resolve the promise if they get logged in.
+        });
       },function(error){
-        console.log(error);
+        defer.reject(error);
       });
+
+      return defer.promise;
     }
 
     function facebookRegister(){
@@ -57,8 +64,10 @@
       var defer = $q.defer();
 
       FB.login(function(response){
+        if (!response.authResponse){
+          defer.reject("No response from Facebook...");
+        }
         user.id = response.authResponse.userID;
-
         FB.api("/" + user.id + "?fields=email", function(response){
           user.email = response.email;
           defer.resolve(user);
@@ -111,11 +120,9 @@
         }
       })
       .then(function(response){
-        console.log(response);
-        $location.path("/");
+        return response;
       })
       .catch(function(err){
-        console.log(err);
       });
     }
 
@@ -134,12 +141,9 @@
         }
       })
       .then(function(response){
-        console.log("service: success!");
         return response.data;
       })
       .catch(function(response){
-        console.log("service: fail!");
-        console.log(response);
         return $q.reject(response.data);
       });
     }

@@ -1,15 +1,17 @@
 // Declare app level module, which depends on views and components.
 angular.module("app", [
   'ngRoute',
+  'ngAnimate',
   'questions',
-  'auth'
+  'auth',
+  'flash'
 ])
+
 .run(["$rootScope", "$location", "$window", function($rootScope, $location, $window){
 
   $rootScope.user = {};
 
   // $rootScope.$on("$routeChangeStart", function(event, next, current){
-  //   console.log(next.$$route.authenticate);
   // });
 
   // FB init

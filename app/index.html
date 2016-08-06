@@ -17,7 +17,9 @@
 <body ng-cloak>
   <div class="container row">
     <div class="large-12 columns">
+
       <menu></menu>
+      <flash-message></flash-message>
 
       <div class="row">
         <div class="large-12 columns">
@@ -32,12 +34,17 @@
   <script src = "/assets/libs/bower/jquery/dist/jquery.min.js"></script>
   <script src="/assets/libs/bower/foundation-sites/dist/foundation.min.js"></script>
 
+
   <!-- Angular modules -->
+
   <script src="/assets/libs/bower/angular/angular.js"></script>
   <script src="/assets/libs/bower/angular-route/angular-route.js"></script>
-
+  <script src = "/assets/libs/bower/angular-animate/angular-animate.js"></script>
   <script src="app.module.js"></script>
+
+
   <script src="/shared/menu/menu.js"></script>
+  <script src = "/shared/flash/flash.js"></script>
   <script src="/questions/questions.js"></script>
   <script src="/questions/questions.service.js"></script>
   <script src="/questions/questions.onlymath.directive.js"></script>

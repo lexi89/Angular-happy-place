@@ -4,9 +4,9 @@
     .controller("questionsCtrl", QuestionsController)
     .config(config);
 
-    QuestionsController.$inject = ["questions.service", "$scope"];
+    QuestionsController.$inject = ["questions.service", "$scope", "flashService"];
 
-    function QuestionsController(questionservice, $scope){
+    function QuestionsController(questionservice, $scope, flash){
       var _ = $scope;
       var qs = questionservice;
 
@@ -25,7 +25,7 @@
           .then(function(){
             fetchQuestions();
           });
-          _.savedQuestions.push(this.question); // immediate feedback for user
+          _.savedQuestions.push(this.question); flash.message("success", "Question saved");
           resetQuestion();
         } else {
           qs.updateQuestion(this.question)
@@ -36,7 +36,6 @@
       }
 
       function fetchQuestions(){
-        console.log('fetching questions...');
         qs.fetchQuestions()
         .then(function(data){
           _.savedQuestions = data;
@@ -50,10 +49,10 @@
         _.savedQuestions.splice(this.$index, 1);
         qs.deleteQuestion(this.question)
         .then(function (success) {
-          // question saved!
+          flash.message("success", "Question deleted");
         })
         .catch(function (fail) {
-          // question failed to save!
+          flash.message("alert", "Couldn't delete your question...");
         });
       }
 

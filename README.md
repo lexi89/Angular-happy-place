@@ -17,3 +17,9 @@
 # Bugs:
 1. Multiple operators allowed in input (e.g. "1-+1")
 2. Duplicate entries aren't processed.
+
+
+
+flash messages
+
+service that can be injected anywhere.

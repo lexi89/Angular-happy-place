@@ -1,11 +1,6 @@
-<h1>Login</h1>
-<button ng-click = "facebookLogin()" class = "large button ">Facebook login</button>
-<button ng-click = "facebookLogout()" class = "large button ">Facebook logout</button>
-
-
-<div class="row">
-  <div class="small-6 columns">
-
+<div class="row login-wrapper">
+  <div class="medium-6 columns">
+    <h3>Login</h3>
     <form ng-submit = "localLogin()" novalidate>
 
       <label for="email">Email</label>
@@ -14,8 +9,13 @@
       <label for="password">Password</label>
       <input type="password" ng-model = "user.password">
 
-      <input type = "submit" hidden>
+      <input type = "submit" value = "Login" class = "button">
     </form>
+    <br>
+  </div>
 
+  <div class="medium-6 columns social-login">
+    <h3>...or login with:</h3>
+    <button ng-click = "facebookLogin()" class = "button ">Facebook</button>
   </div>
 </div>
