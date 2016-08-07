@@ -9,6 +9,20 @@ var bPassword = secrets.bcrypt.password;
 
 module.exports = function(app, passport){
 
+  app.post("/login", function(req, res, next){
+    console.log(req.body);
+    passport.authenticate("local", function(err, user, info){
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.status(400).json({err: "Couldn't find user"});
+      }
+      res.status(200).json({status: "login successful"});
+    })(req, res, next);
+  });
+
+
   app.post("/register", function(req, res){
     var newUser = Users({
       name: req.body.name,

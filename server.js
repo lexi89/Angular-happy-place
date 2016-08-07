@@ -15,11 +15,16 @@ var morgan = require("morgan");
 var flash = require("connect-flash");
 var Users = require("./models/userModel.js");
 
+// Express settings
+app.set("views", "./app");
+app.set("view engine", "ejs");
+app.use(express.static(__dirname +"/app"));
+
 // Middleware
-app.use(express.static("app"));
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
 
 // passport strategies setup
 passport.use(new LocalStrategy(
@@ -36,22 +41,15 @@ passport.use(new LocalStrategy(
   }
 ));
 
-app.post("/login", function(req, res, next){
-  console.log(req.body);
-  passport.authenticate("local", function(err, user, info){
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return res.status(400).json({err: "Couldn't find user"});
-    }
-    res.status(200).json({status: "login successful"});
-  })(req, res, next);
+app.get("/dashboard", function(req, res){
+  res.render("dashboard.ejs");
 });
+
 
 app.get("/", function (req, res) {
   res.render("index");
 });
+
 
 // connect to mongo
 mongoose.connect("mongodb://" + secrets.mongo.USERNAME + ":" + secrets.mongo.PASSWORD + "@ds029675.mlab.com:29675/questions");
