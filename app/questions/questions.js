@@ -1,4 +1,5 @@
 (function(){
+
   angular
     .module("questions",["ngRoute"])
     .controller("questionsCtrl", QuestionsController)
@@ -6,9 +7,8 @@
 
     QuestionsController.$inject = ["questions.service", "$scope", "flashService"];
 
-    function QuestionsController(questionservice, $scope, flash){
+    function QuestionsController(qs, $scope, flash){
       var _ = $scope;
-      var qs = questionservice;
 
       _.question = {"question":"", "answer":""};
       _.savedQuestions = [];
@@ -16,43 +16,49 @@
       _.fetchQuestions = fetchQuestions;
       _.resetQuestion = resetQuestion;
       _.deleteQuestion = deleteQuestion;
+      _.clearQuestions = clearQuestions;
 
-      fetchQuestions();
+      fetchQuestions(); // Start by fetching questions from cookies.
+
+      function fetchQuestions(){
+        qs.fetchQuestions()
+        .then(function (questions) {
+          _.savedQuestions = questions;
+        }, function (error) {
+          flash.message("alert", error);
+        });
+      }
 
       function saveQuestion(){
-        if (!this.question._id){
-          qs.saveQuestion(this.question)
-          .then(function(){
-            fetchQuestions();
+        if (!this.question.id){
+          // save new question
+          qs.saveQuestion(_.question)
+          .then(function (questions) {
+            resetQuestion();
+            flash.message("success", "Question saved!");
+            _.savedQuestions = questions;
+          }, function (err) {
+            flash.message("alert", err);
           });
-          _.savedQuestions.push(this.question); flash.message("success", "Question saved");
-          resetQuestion();
         } else {
+          // update existing question.
           qs.updateQuestion(this.question)
-          .then(function(){
-            fetchQuestions();
+          .then(function (questions) {
+            _.savedQuestions = questions;
+            flash.message("success", "Question saved!");
+          }, function (error) {
+            flash.message("alert", "Couldn't save your question...");
           });
         }
       }
 
-      function fetchQuestions(){
-        qs.fetchQuestions()
-        .then(function(data){
-          _.savedQuestions = data;
-        })
-        .catch(function(error){
-          console.log(error);
-        });
-      }
-
       function deleteQuestion(){
-        _.savedQuestions.splice(this.$index, 1);
         qs.deleteQuestion(this.question)
-        .then(function (success) {
+        .then(function (questions) {
           flash.message("success", "Question deleted");
-        })
-        .catch(function (fail) {
-          flash.message("alert", "Couldn't delete your question...");
+          _.savedQuestions = questions;
+        }, function (error) {
+          flash.message("alert", "Couldn't save the question...");
         });
       }
 
@@ -60,6 +66,14 @@
         _.question = {"question":"", "answer":""};
       }
 
+      function clearQuestions(){
+        qs.clearQuestions()
+        .then(function (success) {
+          flash.create("success", "Cookie reset");
+        }, function (err) {
+          flash.create("alert", "Couldn't reset cookie...");
+        });
+      }
     }
 
     function config($routeProvider){

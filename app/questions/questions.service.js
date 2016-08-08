@@ -11,7 +11,8 @@
         solveQuestion: solveQuestion,
         updateQuestion: updateQuestion,
         fetchQuestions: fetchQuestions,
-        deleteQuestion: deleteQuestion
+        deleteQuestion: deleteQuestion,
+        clearQuestions: clearQuestions
       };
       return service;
 
@@ -28,10 +29,9 @@
           }
         })
         .then(function(success){
-          return success;
-        })
-        .catch(function (response){
-          return response.data;
+          return success.data;
+        }, function (err){
+          throw err.data;
         });
       }
 
@@ -43,14 +43,13 @@
             "Content-type": "application/json"
           },
           data:{
-            "_id": question._id
+            question: question
           }
         })
         .then(function (success) {
-          return success;
-        })
-        .catch(function (err) {
-          return err;
+          return success.data;
+        }, function (error){
+          throw error.data;
         });
       }
 
@@ -62,16 +61,13 @@
             "Content-type" : "application/json"
           },
           data:{
-            "_id": question._id,
-            "question": question.question,
-            "answer": question.answer
+            question: question
           }
         })
         .then(function(success){
-          return success;
-        })
-        .catch(function(fail){
-          return fail;
+          return success.data;
+        }, function (error) {
+          throw error.data;
         });
       }
 
@@ -79,9 +75,17 @@
         return $http.get("/questions")
         .then(function(response){
           return response.data;
-        })
-        .catch(function(error){
-          return error;
+        }, function (err) {
+          throw err.data;
+        });
+      }
+
+      function clearQuestions(){
+        return $http.get("/clearquestions")
+        .then(function(response){
+          return response;
+        }, function (err) {
+          throw err.data;
         });
       }
 

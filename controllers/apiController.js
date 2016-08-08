@@ -1,61 +1,68 @@
-var Questions = require("../models/questionModel");
-var bodyParser = require("body-parser");
 var Q = require("q");
+var sessions = require("client-sessions");
+var _ = require("underscore");
+
 
 module.exports = function(app){
 
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({extended:true}));
 
   // start of API
   app.get("/questions", function(req,res){
-    Questions.find({homeworkId: "test"})
-    .then(function(response){
-      res.send(response);
-    });
-  });
-
-  app.post("/question", function(req, res){
-    // find by id and update with new params
-    Questions.findOneAndUpdate(
-      {_id: req.body._id},
-      {
-        question: req.body.question,
-        answer: req.body.answer
-      }
-    ).then(function(response){
-      res.send(response);
-    })
-    .catch(function(err){
-      res.send("something went wrong:" + err);
-    });
-  });
-
-  app.delete("/question", function(req, res){
-    Questions.findOneAndRemove({_id: req.body._id})
-    .then(function (response) {
-      res.send(respone);
-    })
-    .catch(function (err) {
-      res.send(err);
-    });
+    // get questions out of the cookie
+    var questions = req.session.questions;
+    if (!questions || questions === undefined){
+      res.status(404).send("No questions found...");
+    }
+    res.status(200).send(questions);
   });
 
   app.post("/newquestion", function(req, res){
-    // create a new question
-    var newQuestion = Questions({
-      homeworkId: "test",
+    req.session.questions.push({
+      id: Date.now(), // use the time of creation as ID
       question: req.body.question,
       answer: req.body.answer
     });
+    res.status(200).send(req.session.questions);
+  });
 
-    newQuestion.save()
-    .then(function(response){
-      res.send("Success! Here's the response: " + response);
-    })
-    .catch(function(err){
-      res.send("Something went wrong: " + err );
+  app.post("/question", function(req, res){
+    // find the question
+    var index = req.session.questions.findIndex(function(elem){
+      return elem.id === req.body.question.id;
+    });
+    if (index === -1){
+      res.status(404).send("Couldn't update the question...");
+    }
+    // update the question.
+    req.session.questions[index] = {
+      "id": req.body.question.id,
+      "question": req.body.question.question,
+      "answer": req.body.question.answer
+    };
+    res.status(200).send(req.session.questions);
+  });
+
+  app.delete("/question", function(req, res){
+    // find and delete the passed question from the cookie
+    var index = req.session.questions.findIndex(function(element){
+      return element.id === req.body.question.id;
     });
 
+    if (index === -1){
+      res.status(404).send("couldn't find the question...");
+    } else {
+      var newQuestions = _.reject(req.session.questions, function(elem){
+        return elem.id === req.body.question.id;
+      });
+      req.session.questions = newQuestions;
+      res.status(200).send(newQuestions);
+    }
   });
+
+  app.get("/clearquestions", function (req, res) {
+    // clear the questions from the session.
+    req.session.questions = [];
+    res.status(200).send("questions deleted");
+  });
+
 };
