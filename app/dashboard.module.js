@@ -5,4 +5,10 @@ angular.module("app", [
   'questions',
   'auth',
   'flash'
-]);
+])
+.controller("mainCtrl", function($scope){
+  $scope.modal = false;
+  $scope.toggleModal = function(){
+    $scope.modal = (!$scope.modal);
+  };
+});

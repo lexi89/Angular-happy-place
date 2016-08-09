@@ -1,4 +1,4 @@
-<div class="questions-view-wrapper row">
+<div class="questions-view-wrapper row" ng-cloak>
   <div class="large-12 columns">
     <button class="button alert" ng-click = "clearQuestions()">Reset cookie</button>
     <h1>Homework name here</h1>
@@ -6,24 +6,18 @@
     <h3>Add a new question:</h3>
     <question-form class = "new-question"></question-form>
     <br>
-    <div ng-repeat = "question in savedQuestions" class = "saved-question-wrapper">
+    <div ng-repeat = "question in savedQuestions" class = "saved-question-wrapper" ng-class = "{'focusmode': focusMode}">
 
-      <div class = "saved-question-number"><span>{{$index + 1}}. &nbsp</span></div>
-      <div ng-hide = "editMode" class = "full-width">
-
-        <span ng-click = "toggleEditMode()" class = "saved-question-question">{{question.question}}</span>
-
-        <span class = "saved-question-answer"> = {{question.answer}}</span>
-
+      <div class = "saved-question">
+        <div class = "saved-question-number"><span>{{$index + 1}}. &nbsp</span></div>
+        <question-form class = "inline"></question-form>
       </div>
-
-      <question-form ng-show = "editMode" class = "inline"></question-form>
-
       <div class="controls">
-        <a ng-click = "toggleEditMode()"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-        <a ng-click = "deleteQuestion()"><i class="fa fa-trash" aria-hidden="true"></i></a>
+        <a ng-click = "toggleFocusMode()"><i class="fa fa-pencil edit-button" aria-hidden="true"></i></a>
+        <a ng-click = "deleteQuestion($event)"><i class="fa fa-trash delete-button" aria-hidden="true"></i></a>
       </div>
     </div>
+
   </div>
 
 

@@ -4,14 +4,19 @@ angular
   return{
     templateUrl: "/questions/question.form.html",
     replace: false,
+    restrict: "E",
+    scope: "=",
     compile: function(element, attributes){
       return{
-        post: function(scope, elem){
-          if (elem.parent().hasClass("ng-scope")){
-            elem.parent().on("click", function(){
-              if (!scope.editMode){
+        post: function(scope, elem, attrs){
+          if (scope.question.id){
+            var questionWrapper = elem.parent().parent();
+            questionWrapper.on("click", function(){
+              elem.children().children().find("input").focus();
+              if (!scope.focusMode){
+                // set body background-color to modal;
                 scope.$apply(function(){
-                  scope.toggleEditMode();
+                  scope.toggleFocusMode();
                 });
               }
             });
@@ -21,8 +26,25 @@ angular
     },
     controller: ["$scope", "questions.service", function($scope, questionservice){
       var qs = questionservice;
+      $scope.focusMode = false;
 
-      $scope.editMode = false;
+      $scope.toggleFocusMode = function(){
+        $scope.toggleModal();
+        $scope.focusMode = !$scope.focusMode;
+      };
+
+      $scope.$watch(function () {return $scope.focusMode;}, function(){
+        if ($scope.focusMode) {
+          // listen for clicks on modal in focusmode
+          window.addEventListener("click", function(){
+            if (event.target.className == "modal"){
+              $scope.$apply(function(){
+                $scope.toggleFocusMode();
+              });
+            }
+          });
+        }
+      });
 
       // watch for question changes
       $scope.$watch("question.question",

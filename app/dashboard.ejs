@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app = "app">
+<html lang="en" ng-app = "app" ng-controller = "mainCtrl">
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
@@ -12,21 +12,22 @@
   <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 
-<body ng-cloak>
-  <div class="container row">
-    <div class="large-12 columns">
+<body ng-cloak >
+  <div ng-class = "{'modal' : modal}"></div>
+    <div class="container row">
+      <div class="large-12 columns">
 
-      <menu></menu>
-      <flash-message></flash-message>
+        <menu></menu>
+        <flash-message></flash-message>
 
-      <div class="row">
-        <div class="large-12 columns">
-          <div ng-view></div>
+        <div class="row">
+          <div class="large-12 columns">
+            <div ng-view></div>
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
-  </div>
 
   <!-- jQuery only included for Foundation. Remove if unnecessary. -->
   <script src = "../assets/libs/bower/jquery/dist/jquery.min.js"></script>

@@ -23,7 +23,7 @@ angular.module("flash", [])
           $timeout(function(){
             $rootScope.flash.class = null;
             $rootScope.flash.message = null;
-          }, 3000);
+          }, 2000);
         }
       });
     },

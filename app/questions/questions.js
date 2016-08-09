@@ -42,6 +42,7 @@
           });
         } else {
           // update existing question.
+          this.toggleFocusMode();
           qs.updateQuestion(this.question)
           .then(function (questions) {
             _.savedQuestions = questions;
@@ -52,7 +53,8 @@
         }
       }
 
-      function deleteQuestion(){
+      function deleteQuestion($event){
+        $event.stopPropagation();
         qs.deleteQuestion(this.question)
         .then(function (questions) {
           flash.message("success", "Question deleted");

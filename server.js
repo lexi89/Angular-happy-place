@@ -37,7 +37,7 @@ app.get("/dashboard", function(req, res){
 });
 
 app.get("/", function (req, res) {
-  res.render("index");
+  res.render("homepage.ejs");
 });
 
 // setup APIs

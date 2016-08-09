@@ -9,7 +9,6 @@ body{
   font-size: 20px;
   width: 100%;
   color: #545454;
-
 }
 
 menu{
@@ -30,64 +29,81 @@ h1,h2,h3,h4,h5,h6{
 
 .question-input-wrapper{
   width: 100%;
+  & input{
+    font-size: 2rem;
+    box-shadow: none;
+    display: inline-block;
+    color: #545454;
+    background-color: transparent;
+  }
 }
 
-#question{
+.new-question input{
   width: 40%;
-  font-size: 2rem;
   border: 0px;
   border-bottom: 1px solid #545454;
-  background-color: transparent;
-  box-shadow: none;
-  display: inline-block;
-  color: #545454;
   &:focus{
+    border: 0px;
     border-bottom: 1px solid #545454;
   }
 }
 
 .controls{
-  width: 10%;
   display: none;
   position: absolute;
-  right: 10%;
+  right: 0px;
   a{
     margin: 5px;
   }
 }
-
+.delete-button{
+  position:relative;
+  z-index:200;
+}
 .inline{
-  width: 100%;
-  display: flex;
-  & #question{
+  display: inline-block;
+  width: 90%;
+  border-bottom: 0px;
+  & input{
+    max-width: 50%;
     padding-left: 0px;
     margin-bottom: 6px;
-    width: 30%;
+    border: 0px;
     background-color: transparent;
+    &:focus{
+      background-color: transparent;
+      border: 0px;
+    }
   }
-}
-.inline > form{
-  width: 100%;
-  display: inline-block;
 }
 
 .saved-question-wrapper{
   padding: 20px;
   min-height: 100px;
-  display: flex;
-  align-items: center;
+  display: inline-block;
+  position:relative;
+  width: 100%;
+  float: left;
+  z-index: 0;
   &:hover{
     cursor: pointer;
-    background-color: rgba(gray, 0.1);
+    background-color: rgba(black,0.1);
     .controls{
-      display: flex;
+      display: inline;
     }
+  }
+  & form{
+    display: inline-block;
   }
 }
 
+.saved-question{
+  display: inline-block;
+  width: 80%;
+}
+
 .saved-question-number{
-  display: inline-table;
-  height: 50%;
+  display: inline-block;
 }
 
 .saved-question-question{
@@ -96,7 +112,33 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .saved-question-answer{
-  color: lighten(#545454, 30%);
+  color: lighten(#545454, 40%);
+}
+
+.inline .saved-question-answer{
+  max-width: 40%;
+  display: inline;
+  position: relative;
+  right: 0px;
+  top: 0px;
+  padding: 20px;
+}
+
+.modal{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(black, 0.8);
+  position: fixed;
+  z-index:99;
+}
+
+.focusmode{
+  position: relative;
+  z-index: 100;
+  background-color: white;
+  &:hover{
+    background-color: white !important;
+  }
 }
 
 .full-width{
