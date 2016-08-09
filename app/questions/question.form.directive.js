@@ -12,7 +12,7 @@ angular
           if (scope.question.id){
             var questionWrapper = elem.parent().parent();
             questionWrapper.on("click", function(){
-              elem.children().children().find("input").focus();
+              elem[0].children[0][0].focus();
               if (!scope.focusMode){
                 // set body background-color to modal;
                 scope.$apply(function(){
