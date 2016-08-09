@@ -1,5 +1,8 @@
 {
   "name": "angular_app_seed",
+  "engines": {
+    "node": "5.12.0"
+  },
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
