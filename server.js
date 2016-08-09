@@ -1,4 +1,3 @@
-var secrets = require("./config/secrets.js");
 var express = require("express");
 var app = express();
 var apiController = require("./controllers/apiController");
