@@ -15,14 +15,13 @@
         "math": "",
         "answer": ""
       };
+
       _.savedQuestions = [];
       _.saveQuestion = saveQuestion;
       _.fetchQuestions = fetchQuestions;
       _.resetQuestion = resetQuestion;
       _.deleteQuestion = deleteQuestion;
       _.clearQuestions = clearQuestions;
-
-
 
       fetchQuestions(); // Start by fetching questions from cookies.
 

@@ -190,9 +190,24 @@ h1,h2,h3,h4,h5,h6{
   align-items: center;
   justify-content: center;
   height: 100%;
+  background: #e96443; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #e96443 , #904e95); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #e96443 , #904e95); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  & h1{
+    color: white;
+  }
+  & h2{
+    color: rgba(white, 0.5)
+  }
 }
 #cta{
   margin: 2em;
+  background: transparent;
+  border: 1px solid white;
+  &:hover{
+    background-color: rgba(white, 0.7);
+    color: #E56347;
+  }
 }
 
 .hide{
