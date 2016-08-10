@@ -10,13 +10,19 @@
     function QuestionsController(qs, $scope, flash){
       var _ = $scope;
 
-      _.question = {"question":"", "answer":""};
+      _.question = {
+        "question":"",
+        "math": "",
+        "answer": ""
+      };
       _.savedQuestions = [];
       _.saveQuestion = saveQuestion;
       _.fetchQuestions = fetchQuestions;
       _.resetQuestion = resetQuestion;
       _.deleteQuestion = deleteQuestion;
       _.clearQuestions = clearQuestions;
+
+
 
       fetchQuestions(); // Start by fetching questions from cookies.
 
@@ -80,7 +86,7 @@
 
     function config($routeProvider){
       $routeProvider.when("/",{
-        templateUrl: "/questions/questions.view.html",
+        templateUrl: "questions/questions.view.html",
         controller: "questionsCtrl",
         controllerAs: "questions"
       });

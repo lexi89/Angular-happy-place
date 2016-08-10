@@ -20,7 +20,8 @@ module.exports = function(app){
     req.session.questions.push({
       id: Date.now(), // use the time of creation as ID
       question: req.body.question,
-      answer: req.body.answer
+      answer: req.body.answer,
+      math: req.body.math
     });
     res.status(200).send(req.session.questions);
   });
@@ -37,7 +38,8 @@ module.exports = function(app){
     req.session.questions[index] = {
       "id": req.body.question.id,
       "question": req.body.question.question,
-      "answer": req.body.question.answer
+      "answer": req.body.question.answer,
+      "math": req.body.math
     };
     res.status(200).send(req.session.questions);
   });

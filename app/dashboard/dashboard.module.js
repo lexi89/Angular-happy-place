@@ -4,7 +4,8 @@ angular.module("app", [
   'ngAnimate',
   'questions',
   'auth',
-  'flash'
+  'flash',
+  'ngLodash'
 ])
 .controller("mainCtrl", function($scope){
   $scope.modal = false;

@@ -4,7 +4,7 @@
     .module("questions")
     .factory("questions.service", questionservice);
 
-    function questionservice($http) {
+    function questionservice($http, lodash) {
       // put all variable and function declarations at the top for readability.
       var service = {
         saveQuestion: saveQuestion,
@@ -25,7 +25,8 @@
           },
           data: {
             "question": question.question,
-            "answer": question.answer
+            "answer": question.answer,
+            "math": question.math
           }
         })
         .then(function(success){
@@ -90,7 +91,8 @@
       }
 
       function solveQuestion(question){
-        return eval(question);
+        var answer = lodash.round(eval(question), 7);
+        return answer;
       }
     }
 

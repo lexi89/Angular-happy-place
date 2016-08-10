@@ -30,7 +30,7 @@ app.use(function(req, res, next){
 });
 
 app.get("/dashboard", function(req, res){
-  res.render("dashboard.ejs");
+  res.render("dashboard/dashboard.ejs");
 });
 
 app.get("/", function (req, res) {
