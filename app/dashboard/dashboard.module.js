@@ -3,7 +3,6 @@ angular.module("app", [
   'ngRoute',
   'ngAnimate',
   'questions',
-  'auth',
   'flash',
   'ngLodash'
 ])
