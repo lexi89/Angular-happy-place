@@ -1,8 +1,6 @@
-# Math.ly - An Angular app for building math questions.
+# Happy place for starting angular apps.
 
-## Feature roadmap
-1. Error-handling and tooltips.
-2. Advanced maths operators.
+## Gulp, sass compiler, autoprefixer, browser-sync
 
-### Known Bugs:
-Prevent copy/paste
+## Install
+`git clone git@github.com:lexi89/Angular-happy-place.git [project name]`
