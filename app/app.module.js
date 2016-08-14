@@ -1,8 +1,10 @@
-// Declare app level module, which depends on views and components.
+// Declare app level module and required component modules.
+(function(){
 
-var app = angular.module("app", [
-  'ngRoute',
-  'todos',
-  'weather',
-  'app.directive1'
-]);
+  angular.module("app", [
+    'ngRoute'
+    // "component 1"
+    // "component 2"
+    
+  ]);
+})();
