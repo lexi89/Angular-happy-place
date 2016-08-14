@@ -13,20 +13,18 @@ gulp.task('browser-sync',["nodemon"], function() {
         files: ["app/**/*.*"],
         port:3000
     });
-    gulp.watch("./app/assets/css/main.scss", ["sass"]);
+    gulp.watch("./app/assets/css/*.scss", ["sass"]);
     gulp.watch(["*.html", "*.js"], browserSync.reload);
 });
 
 gulp.task("sass", function(){
-  console.log("Running 'sass'");
   return gulp.src("./app/assets/css/main.scss")
   .pipe(sass({
-    style: "compressed",
-    errLogToConsole:false,
-    onError: function(err){
-      return notify().write(err);
-    }
-  }))
+    outputStyle: "compressed",
+    includePaths: ['./app/assets/libs/bower/foundation-sites/scss']
+  })
+    .on("error", sass.logError)
+  )
   .pipe(autoprefixer({
     browsers: ["last 2 versions"]
   }))

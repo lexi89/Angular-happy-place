@@ -18,6 +18,13 @@
     "foundation": "^5.5.3",
     "angular": "^1.5.7",
     "normalize-css": "^4.2.0",
-    "angular-route": "^1.5.7"
+    "angular-route": "^1.5.7",
+    "angular-cookies": "^1.5.8",
+    "foundation-sites": "^6.2.3",
+    "angular-animate": "^1.5.8",
+    "ng-lodash": "^0.5.0"
+  },
+  "resolutions": {
+    "angular": "1.5.8"
   }
 }

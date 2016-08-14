@@ -1,0 +1,29 @@
+<div class="questions-view-wrapper row" ng-cloak>
+  <div class="large-12 columns">
+    <button class="button alert hide" ng-click = "clearQuestions()">Reset cookie</button>
+
+    <h3>Start adding questions...</h3>
+
+    <toolbox></toolbox>
+
+    <question-form class = "new-question"></question-form>
+    <br>
+
+    <!-- child scope for every repeated question. -->
+    <div ng-repeat = "question in savedQuestions" class = "saved-question-wrapper" ng-class = "{'focusmode': focusMode}">
+      <toolbox class="inline-toolbox" ng-show = "focusMode"></toolbox>
+      <div class = "saved-question">
+        <div class = "saved-question-number"><span>{{$index + 1}}. &nbsp</span></div>
+        <question-form class = "inline"></question-form>
+      </div>
+
+      <div class="controls">
+        <a ng-click = "toggleFocusMode()"><i class="fa fa-pencil edit-button" aria-hidden="true"></i></a>
+        <a ng-click = "deleteQuestion($event)"><i class="fa fa-trash delete-button" aria-hidden="true"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

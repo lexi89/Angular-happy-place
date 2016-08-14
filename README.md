@@ -1,17 +1,8 @@
-# Happy place for starting Angular apps.
+# Math.ly - An Angular app for building math questions.
 
-Based on [John Papa's guide] (https://github.com/johnpapa/angular-styleguide)
+## Feature roadmap
+1. Error-handling and tooltips.
+2. Advanced maths operators.
 
-## Structure
-- Responsibilities split up into separate modules.
-
-## npm scripts
-- "commit": add and commit all files to git with default message
-- "heroku": push all files to heroku
-
-## Gulp tasks
-- "default": nodemon + browsersync + sass compile + autoprefixer
-
-## Styling
-- Normalize.css
-- Foundation
+### Known Bugs:
+Prevent copy/paste

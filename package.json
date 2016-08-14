@@ -1,10 +1,18 @@
 {
   "name": "angular_app_seed",
+  "engines": {
+    "node": "5.12.0"
+  },
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "hahaha",
+=======
+    "postinstall": "bower cache clean && bower install",
+    "test": "echo \"Error: no test specified\" && exit 1",
+>>>>>>> a591ceffb5d6d3a1a9f28d226d1fcd3c48d5dc39
     "start": "node server.js",
     "commit": "git add . && git commit -am 'auto-commit' && git push origin master",
     "heroku": "git push heroku master"
@@ -16,9 +24,17 @@
     "browser-sync": "^2.13.0",
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.1.0",
-    "gulp-sass": "^2.3.2"
+    "gulp-sass": "^2.3.2",
+    "morgan": "^1.7.0"
   },
   "dependencies": {
-    "express": "^4.14.0"
+    "bcrypt": "^0.8.7",
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.2",
+    "bower": "^1.7.9",
+    "client-sessions": "^0.7.0",
+    "ejs": "^2.5.1",
+    "express": "^4.14.0",
+    "underscore": "^1.8.3"
   }
 }
