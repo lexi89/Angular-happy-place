@@ -5,6 +5,5 @@
     'ngRoute'
     // "component 1"
     // "component 2"
-    
   ]);
 })();
