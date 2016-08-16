@@ -1,9 +1,24 @@
-// Declare app level module and required component modules.
 (function(){
 
   angular.module("app", [
     'ngRoute'
-    // "component 1"
-    // "component 2"
-  ]);
+  ])
+  .controller("mainCtrl", function ($scope) {
+    $scope.sections = ["hero"];
+    $scope.settings = {
+      banner: {
+        subhead: "Subhead",
+        title: "Title",
+        intro: "intro"
+      }
+
+    };
+    $scope.sidebar = false;
+    $scope.editMode = false;
+
+    $scope.toggleEditMode = function(){
+      $scope.editMode = !$scope.editMode;
+    };
+  });
+
 })();

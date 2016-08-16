@@ -1,0 +1,27 @@
+<div id = "sidebar" ng-class = "{'editMode': editMode}">
+
+  <!-- Top menu -->
+  <div class="dark" id = "sidebar-nav">
+    <ul>
+      <li>&times</li>
+      <li>Edit</li>
+      <li>Undo</li>
+      <li>Save</li>
+    </ul>
+  </div>
+
+  <!-- Sub menu -->
+  <div id="sidebar-subnav">
+    <ul>
+      <li ng-click = "showSettings('banner')">Banner</li>
+      <li ng-click = "showSettings('style')">Style</li>
+      <li ng-click = "showSettings('widgets')">Widgets</li>
+    </ul>
+  </div>
+
+  <!-- Content -->
+  <banner-settings ng-show = "activeSection == 'banner'"></banner-settings>
+  <style-settings ng-show = "activeSection == 'style'"></style-settings>
+  <widgets-settings ng-show = "activeSection == 'widgets'"></widgets-settings>
+
+</div>

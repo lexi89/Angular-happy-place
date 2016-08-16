@@ -11,10 +11,11 @@ gulp.task('browser-sync',["nodemon"], function() {
     browserSync.init({
         proxy: "http://localhost:5000",
         files: ["app/**/*.*"],
-        port:3000
+        port:3000,
+        notify: false
     });
     gulp.watch("./app/assets/css/*.scss", ["sass"]);
-    gulp.watch(["*.html", "*.js"], browserSync.reload);
+    gulp.watch(["*.html", "*.js", "*.ejs"], browserSync.reload);
 });
 
 gulp.task("sass", function(){

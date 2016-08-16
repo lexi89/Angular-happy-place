@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" ng-app = "app">
+<html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Angular app</title>
+  <title>Bodireel pro dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Normalize -->
   <link rel="stylesheet" href="/assets/libs/bower/normalize-css/normalize.css">
@@ -10,20 +10,44 @@
   <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 
-<body>
-  <div class="row">
-    <div class = "medium-6 medium-offset-3 columns">
-      <h3>Welcome to the Angular happy place.</h3>
-      <label for="">Try it out:</label>
-      <input type="text" ng-model = "test" value = "Everything's working" >
-      {{test}}
-    </div>
+<body ng-app = "app" ng-controller = "mainCtrl">
+  <div class = "profile-container" ng-class = "{'editMode': editMode}">
 
+    <ul class="medium-horizontal menu top-bar-right">
+      <li><a href="#">One</a></li>
+      <li><a href="#">Two</a></li>
+      <li><a href="#">Three</a></li>
+    </ul>
+
+    <page-builder></page-builder>
+    <sidebar></sidebar>
+    <button class = "edit-button button" ng-click = "toggleEditMode()">SB</button>
   </div>
 
   <script src="/assets/libs/bower/angular/angular.js"></script>
   <script src="/assets/libs/bower/angular-route/angular-route.js"></script>
 
   <script src="app.module.js"></script>
+  <script src="/widgets/pagebuilder.directive.js"></script>
+  <script src="/sidebar/sidebar.directive.js"></script>
+
+  <!-- widgets -->
+  <script src="/widgets/banner/banner.directive.js"></script>
+
+  <script src = "/widgets/connect/connect.directive.js"></script>
+
+  <script src = "/widgets/contact/contact.directive.js"></script>
+
+  <script src="/widgets/network/network.directive.js"></script>
+
+  <script src="/widgets/reviews/reviews.directive.js"></script>
+
+  <script src="/widgets/work/work.directive.js"></script>
+
+<!-- Sidebar settings -->
+  <script src="/sidebar/banner/banner.directive.js"></script>
+  <script src="/sidebar/style/style.directive.js"></script>
+  <script src="/sidebar/widgets/widgets.directive.js"></script>
+
 </body>
 </html>
