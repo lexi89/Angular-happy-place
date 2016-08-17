@@ -1,7 +1,7 @@
 (function(){
 
   angular.module("app")
-  .directive("hero", function(){
+  .directive("banner", function(){
     return{
       templateUrl: "/widgets/banner/banner.html"
     };

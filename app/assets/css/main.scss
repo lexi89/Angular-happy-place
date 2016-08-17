@@ -11,11 +11,11 @@
 
 .profile-container{
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
   width: 100%;
   height: 100vh;
   &.editMode{
-    padding-right: 20%;
+    padding-right: 30%;
   }
 }
 
@@ -26,11 +26,10 @@
   background-position: center, center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative; // enable absolute position for children
 }
 
 .edit-button{
-  background-color: white;
+  background-color: #0795B8;
   border-radius: 50%;
   height: 75px;
   width: 75px;
@@ -42,12 +41,15 @@
 
 #sidebar{
   background-color: white;
+  padding: 20px;
   height: 100vh;
-  width: 20%;
+  width: 30%;
   position: absolute;
   top: 0px;
-  right: -20%;
+  right: -30%;
   &.editMode{
     right: 0px;
+    box-shadow: -10px 0px 20px #888888;
+    position: fixed;
   }
 }
