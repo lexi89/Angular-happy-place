@@ -7,7 +7,14 @@
       // watch for changes to the list of page widgets
 
       function getSections(){
-        return scope.sections;
+        // get the array-like object.
+        var activeSections = [];
+        for (var i in scope.profile){
+          if (scope.profile[i] !== null){
+            activeSections.push(i);
+          }
+        }
+        return activeSections;
       }
 
       function build(){
@@ -15,11 +22,11 @@
         elem.children().remove();
 
         // get the sections.
-        var selectedWidgets = scope.sections;
+        var activeWidgets = getSections();
 
         var html = "";
         // add each section to the html string
-        angular.forEach(selectedWidgets, function(name){
+        angular.forEach(activeWidgets, function(name){
           html += "<" + name + "></" + name + "><br/>";
         });
 

@@ -1,1 +1,3 @@
-<p>Widget settings</p>
+<ul ng-repeat = "(key, value) in profile">
+  <li>{{key}} <span ng-show = "value !== null">(active)</span></li>
+</ul>

@@ -1,22 +1,20 @@
-<div id = "sidebar" ng-class = "{'editMode': editMode}">
+<div id = "sidebar" class = "editMode" ng-class = "{'editMode': editMode}">
 
   <!-- Top menu -->
   <div class="dark" id = "sidebar-nav">
-    <ul>
-      <li ng-click = "toggleEditMode()">&times</li>
-      <li>Edit</li>
-      <li>Undo</li>
-      <li>Save</li>
-    </ul>
+    <a ng-click = "toggleEditMode()">&times</a>
+    <a>Edit</a>
+    <span class = "pull-right">
+      <a>Undo</a>
+      <a>Save</a>
+    </span>
   </div>
 
   <!-- Sub menu -->
   <div id="sidebar-subnav">
-    <ul>
-      <li ng-click = "showSettings('banner')">Banner</li>
-      <li ng-click = "showSettings('style')">Style</li>
-      <li ng-click = "showSettings('widgets')">Widgets</li>
-    </ul>
+    <a ng-click = "showSettings('banner')">Banner</a>
+    <a ng-click = "showSettings('style')">Style</a>
+    <a ng-click = "showSettings('widgets')">Widgets</a>
   </div>
 
   <!-- Content -->
