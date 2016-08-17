@@ -1,3 +1,14 @@
-<ul ng-repeat = "(key, value) in profile">
-  <li>{{key}} <span ng-show = "value !== null">(active)</span></li>
+<ul ng-repeat = "(key, value) in profile" ng-hide = "editing">
+  <li ng-click = "editWidget(key)">
+    {{key}}
+    <span ng-show = "value !== null">(active)</span>
+  </li>
 </ul>
+
+<connect-settings ng-show = "editing == 'connect'"></connect-settings>
+<contact-settings ng-show = "editing == 'contact'"></contact-settings>
+<experience-settings ng-show = "editing == 'experience'"></experience-settings>
+<qualifications-settings ng-show = "editing == 'qualifications'"></qualifications-settings>
+<skills-settings ng-show = "editing == 'skills'"></skills-settings>
+<statement-settings ng-show = "editing == 'statement'"></statement-settings>
+<work-settings ng-show = "editing == 'work'"></work-settings>

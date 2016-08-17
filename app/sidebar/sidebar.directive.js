@@ -9,8 +9,8 @@
   })
   .controller("sidebarCtrl", function ($scope) {
     $scope.activeSection = "banner";
-
     $scope.showSettings = function(name){
+      $scope.editing = false;
       $scope.activeSection = name;
     };
   });
